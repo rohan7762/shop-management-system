@@ -3,8 +3,8 @@ const cors = require('cors');
 const errorHandler = require('../middlewares/errorMiddleware');
 const protect = require('../middlewares/authMiddleware');
 const productRoutes = require('../routes/productRoute');
-
 const authRoutes = require('../routes/authRoute');
+const expenseRoutes = require('../routes/expenseRoute');
 
 const app = express();
 
@@ -13,6 +13,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/expenses', expenseRoutes);
 
 app.get('/', (req, res) => {
   res.send('API running');
