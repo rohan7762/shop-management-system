@@ -5,6 +5,7 @@ const protect = require('../middlewares/authMiddleware');
 const productRoutes = require('../routes/productRoute');
 const authRoutes = require('../routes/authRoute');
 const expenseRoutes = require('../routes/expenseRoute');
+const saleRoutes = require('../routes/saleRoute');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/expenses', expenseRoutes);
+app.use('/api/sales', saleRoutes);
 
 app.get('/', (req, res) => {
   res.send('API running');
@@ -21,6 +23,7 @@ app.get('/', (req, res) => {
 app.get('/api/test', protect, (req, res) => {
   res.json({ message: 'Protected access', user: req.user });
 });
+router.get('/summary', getSummary);
 
 app.use(errorHandler);
 
